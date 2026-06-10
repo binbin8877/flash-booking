@@ -30,7 +30,7 @@ curl --retry 30 --retry-delay 2 --retry-connrefused http://localhost/actuator/he
 docker exec -i booking-mysql mysql -ubooking -pbookingpw booking < load/seed-users.sql
 ```
 
-시드 사용자 (id 1~3) 만으로는 hold key (`hold:productId:userId`) 가 사용자별 분리되어 *한 사용자당 진행 중 hold 1개* 라는 제약으로 1000 TPS 동시 경쟁 시뮬레이션이 불가능. 1,000명 풀 (id 100~1099) 을 미리 INSERT 해 *진짜 다수 사용자 경쟁* 환경 구성.
+시드 사용자 (id 1 ~ 3) 만으로는 hold key (`hold:productId:userId`) 가 사용자별 분리되어 *한 사용자당 진행 중 hold 1개* 라는 제약으로 1000 TPS 동시 경쟁 시뮬레이션이 불가능. 1,000명 풀 (id 100~1099) 을 미리 INSERT 해 *진짜 다수 사용자 경쟁* 환경 구성.
 
 > 멱등 실행 가능: 이미 시드된 사용자는 `INSERT IGNORE` 로 건너뜀.
 
