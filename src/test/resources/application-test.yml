@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 2000
+  jpa:
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+app:
+  hold:
+    ttl-seconds: 300
+    sweep-cron: "0 */5 * * * *"
+  idempotency:
+    ttl-seconds: 3600
+
+logging:
+  level:
+    com.example.booking: INFO
+    org.testcontainers: WARN
